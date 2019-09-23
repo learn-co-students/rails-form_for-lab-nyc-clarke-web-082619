@@ -8,6 +8,21 @@ class StudentsController < ActionController::Base
         redirect_to student_path(Student.create(student_params))
     end
 
+
+    def edit
+        @student = Student.find(params[:id])
+    end
+
+    def update
+        @student = Student.find(params[:id])
+        @student.update(student_params)
+        redirect_to student_path(@student)
+    end
+    
+    def show
+        @student = Student.find(params[:id])
+    end
+
     def student_params
         params.require(:student).permit(:first_name, :last_name)
     end
